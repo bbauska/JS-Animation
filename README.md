@@ -75,5 +75,12 @@ help you understand how they work and how to use them to write more efficient an
 </ol>
 </h3>
 
-<h3><a href="https://stackdiary.com/javascript-animation-libraries/#GSAP">GSAP</a></h3>
+<h3><a href="https://stackdiary.com/javascript-animation-libraries/#GSAP">GSAP</a><br></h3>
+  <p>A wildly robust JavaScript animation library built for professionals.</p>
+<h3><a href="https://stackdiary.com/javascript-animation-libraries/#paper-js">Paper.js</a><br></h3>
+<p></p>
+<h3><a href="https://stackdiary.com/javascript-animation-libraries/#web-animations-api">Web Animatons</a><br></h3>
+<p></p>
+<h3><a href="https://stackdiary.com/javascript-animation-libraries/#proton">Proton</a><br></h3>
+<p></p>
 
