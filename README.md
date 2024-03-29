@@ -37,39 +37,39 @@ Animation makes us be able to tell stories and communicate emotions and ideas in
     A lightweight library for creating particles, an improved version of the abandoned and obsolete particles.js.</li>
   <li><a href="https://vincentgarreau.com/particles.js/">Particles.js</a><br>
     A lightweight JavaScript library for creating particles.</li>
-  <li><a href="">mo.js</a><br>
+  <li><a href="https://mojs.github.io/">mo.js</a><br>
     The motion graphics toolbelt for the web.</li>
-  <li><a href="">Lightbox2</a><br>
+  <li><a href="https://lokeshdhakar.com/projects/lightbox2/">Lightbox2</a><br>
     A small JS library to overlay images on top of the current page.</li>
-  <li><a href="">Slick</a><br>
+  <li><a href="https://kenwheeler.github.io/slick/">Slick</a><br>
     Fully responsive carousel.</li>
-  <li><a href="">Barba.js</a><br>
+  <li><a href="https://barba.js.org/">Barba.js</a><br>
     Create fluid and smooth transitions between your website’s pages.</li>
-  <li><a href="">Locomotive Scroll</a><br>
+  <li><a href="https://locomotivemtl.github.io/locomotive-scroll/">Locomotive Scroll</a><br>
     A simple scroll library that provides detection of elements in viewport & smooth scrolling with parallax.</li>
-  <li><a href="">Owl Carousel</a><br>
+  <li><a href="https://owlcarousel2.github.io/OwlCarousel2/">Owl Carousel</a><br>
     Free responsive jQuery carousel.</li>
-  <li><a href="">SwiperJS</a><br>
+  <li><a href="https://swiperjs.com/">SwiperJS</a><br>
     Free, Open Source, Modern Slider without jQuery. Available for Vanilla JS and all modern frameworks like React, Vue, Angular etc.</li>
-  <li><a href="">Splide</a><br>
+  <li><a href="https://splidejs.com/">Splide</a><br>
     Free, pure JS library for carousels and sliders.</li>
-  <li><a href="">Simple Parallax</a><br>
+  <li><a href="https://simpleparallax.com/">Simple Parallax</a><br>
     The easiest way to get a parallax effect with javascript.</li>
-  <li><a href="">Granim.js</a><br>
+  <li><a href="https://sarcadass.github.io/granim.js/index.html">Granim.js</a><br>
     Create fluid and interactive gradient animations with this small javascript library.</li>
-  <li><a href="">Popmotion</a><br>
+  <li><a href="https://popmotion.io/">Popmotion</a><br>
     Simple animation libraries for delightful user interfaces.</li>
-  <li><a href="">Vivus</a><br>
+  <li><a href="https://maxwellito.github.io/vivus/">Vivus</a><br>
     Vivus is a lightweight JavaScript class (with no dependencies) that allows you to animate SVGs, giving them the appearence of being drawn.</li>
-  <li><a href="">Typed.js</a><br>
+  <li><a href="https://mattboldt.com/demos/typed-js/">Typed.js</a><br>
     A JavaScript Typing Animation Library.</li>
-  <li><a href="">Progress Bar JS</a><br>
+  <li><a href="https://kimmobrunfeldt.github.io/progressbar.js/">Progress Bar JS</a><br>
     Responsive and slick progress bars with animated SVG paths.</li>
-  <li><a href="">AnimeJS</a><br>
+  <li><a href="https://animejs.com/">AnimeJS</a><br>
     Lightweight JavaScript animation library with a simple, yet powerful API.</li>
-  <li><a href="">AniJS</a><br>
+  <li><a href="https://anijs.github.io/">AniJS</a><br>
     A Library to Raise your Web Design without Coding.</li>
-  <li><a href="">Remotion</a><br>
+  <li><a href="https://www.remotion.dev/">Remotion</a><br>
     This is not an animation library per se but you can use this to make videos by writing Javascript code.</li>
   </ol>
     
