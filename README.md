@@ -72,7 +72,8 @@ help you understand how they work and how to use them to write more efficient an
     <p>A Library to Raise your Web Design without Coding.</p></li>
   <li><a href="https://www.remotion.dev/">Remotion</a><br>
     <p>This is not an animation library per se but you can use this to make videos by writing Javascript code.</p></li>
-  </ol>
+</ol>
 </h3>
 
+<h3><a href="https://stackdiary.com/javascript-animation-libraries/#GSAP">GSAP</a></h3>
 
