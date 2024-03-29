@@ -12,6 +12,7 @@ help you understand how they work and how to use them to write more efficient an
 
 Animation makes us be able to tell stories and communicate emotions and ideas in a unique way. Here are 30 JavaScript animation libraries to use in your projects today.
 
+<h2>
 <ol>
   <li><a href="https://greensock.com/">Greensock</a><br>
     A JavaScript library for building high-performance animations that work in every major browser.</li>
@@ -72,6 +73,6 @@ Animation makes us be able to tell stories and communicate emotions and ideas in
   <li><a href="https://www.remotion.dev/">Remotion</a><br>
     This is not an animation library per se but you can use this to make videos by writing Javascript code.</li>
   </ol>
-    
+</h2>
 
 
