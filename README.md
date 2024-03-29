@@ -8,11 +8,11 @@
 <p>Learn the ins and outs of closures and scope in JavaScript. From the basics to advanced techniques, this guide will 
 help you understand how they work and how to use them to write more efficient and maintainable code.</p>
 
-<h3>Animation libraries & web sites</h3>
+<h2>Animation libraries & web sites</h2>
 
 <p>Animation makes us be able to tell stories and communicate emotions and ideas in a unique way. Here are 30 JavaScript animation libraries to use in your projects today.</p>
 
-<h2>
+<h3>
 <ol>
   <li><a href="https://greensock.com/">Greensock</a><br>
     <p>A JavaScript library for building high-performance animations that work in every major browser.</p></li>
@@ -73,6 +73,6 @@ help you understand how they work and how to use them to write more efficient an
   <li><a href="https://www.remotion.dev/">Remotion</a><br>
     <p>This is not an animation library per se but you can use this to make videos by writing Javascript code.</p></li>
   </ol>
-</h2>
+</h3>
 
 
