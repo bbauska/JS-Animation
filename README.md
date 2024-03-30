@@ -76,25 +76,26 @@ help you understand how they work and how to use them to write more efficient an
 </h3>
 
 <h2>More Animations</h2>
-
+<h3>
 <ol start="30">
-  <li><h3><a href="https://gsap.com/">GSAP</a><br></h3>
+  <li><a href="https://gsap.com/">GSAP</a><br>
     <p>A wildly robust JavaScript animation library built for professionals.</p></li>
-  <li></li><h3><a href="http://paperjs.org/">Paper.js</a><br></h3>
+  <li><a href="http://paperjs.org/">Paper.js</a><br>
     <p>Paper.js is an animation library with a strict focus on animating vector graphics.</p></li>
-  <li><h3><a href="https://web-animations.github.io/web-animations-demos/">Web Animatons</a><br></h3>
+  <li><a href="https://web-animations.github.io/web-animations-demos/">Web Animatons</a><br>
     <p>This library is a direct JavaScript port of the Web Animation API. The library integrates directly with 
     the Element.animate() specification, letting you use animation features typically written using CSS logic</p></li>
-  <li><h3><a href="https://drawcall.github.io/Proton/">Proton</a><br></h3>
+  <li><a href="https://drawcall.github.io/Proton/">Proton</a><br>
     <p>Javascript particle animation engine.</p></li>
-  <li><h3><a href="https://mojs.github.io/">Mo.js</a><br></h3>
+  <li><a href="https://mojs.github.io/">Mo.js</a><br>
     <p>mo.js developer tools helps you when you are building and debugging your animations.</p></li>
-  <li><h3><a href="https://p5js.org/">P5.js</a><br></h3>
+  <li><a href="https://p5js.org/">P5.js</a><br>
     <p>p5.js is a JavaScript library for creative coding, with a focus on making coding accessible and 
       inclusive for artists, designers, educators, beginners, and anyone else! </p></li>
-  <li><h3><a href="https://www.framer.com/motion/">Motion</a><br></h3>
+  <li><a href="https://www.framer.com/motion/">Motion</a><br>
     <p>Complete documentation of the Framer Motion animation library. A production-ready motion library for React.</p></li>
-  <li><h3><a href="https://popmotion.io/">Pop Motion</a><br></h3>
+  <li><a href="https://popmotion.io/">Pop Motion</a><br>
     <p>The animator’s JavaScript toolbox.</p></li>
 </ol>
+</h3>
 
