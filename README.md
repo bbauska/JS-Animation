@@ -1,12 +1,4 @@
-<h1 id="title">JS-Advanced</h1>
-
-<h2>Advanced JavaScript scripts with CSS and HTML5.</h2>
-
-<h3><a href="https://www.javascripthelp.org/learn/advanced/" target="_blank" rel="noopenner noreferrer">Advanced JavaScript Help</a>.</h3>
-
-<h2>Closures &amp; Scope</h2>
-<p>Learn the ins and outs of closures and scope in JavaScript. From the basics to advanced techniques, this guide will 
-help you understand how they work and how to use them to write more efficient and maintainable code.</p>
+<h1 id="title">JS Animations Websites, Libraries, Tips, Tricks, Techniques</h1>
 
 <h2>Animation libraries & web sites</h2>
 
