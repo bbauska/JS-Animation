@@ -1,10 +1,10 @@
 <h1 id="title">JS Animations Websites, Libraries, Tips, Tricks, Techniques</h1>
 
-<h2>Animation libraries & web sites</h2>
+<h3>Animation libraries & web sites</h3>
 
 <p>Animation makes us be able to tell stories and communicate emotions and ideas in a unique way. Here are 30 JavaScript animation libraries to use in your projects today.</p>
 
-<h3>
+<h4>
 <ol>
   <li><a href="https://greensock.com/">Greensock</a><br>
     <p>A JavaScript library for building high-performance animations that work in every major browser.</p></li>
@@ -65,10 +65,10 @@
   <li><a href="https://www.remotion.dev/">Remotion</a><br>
     <p>This is not an animation library per se but you can use this to make videos by writing Javascript code.</p></li>
 </ol>
-</h3>
+</h4>
 
-<h2>More Animations</h2>
-<h3>
+<h3>More Animations</h3>
+<h4>
 <ol start="30">
   <li><a href="https://gsap.com/">GSAP</a><br>
     <p>A wildly robust JavaScript animation library built for professionals.</p></li>
@@ -89,5 +89,5 @@
   <li><a href="https://popmotion.io/">Pop Motion</a><br>
     <p>The animator’s JavaScript toolbox.</p></li>
 </ol>
-</h3>
+</h4>
 
