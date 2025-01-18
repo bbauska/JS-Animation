@@ -1,5 +1,96 @@
-<h1 id="title">JS Animations Websites, Libraries, Tips, Tricks, Techniques</h1>
+<h1 id="title">JS Animations - Website Development, Libraries, &amp; Sample Scripts</h1>
 
+<h3>Page scrolling</h3>
+Page scrolling is one of the most popular uses for JavaScript-based
+animation. A recent trend in web design is to create long webpages that
+animate new pieces of content into view as the page is scrolled down.
+JavaScript animation libraries, such as Velocity, provide simple
+functions for scrolling elements into view:
+Click here to view code image
+```
+$element.velocity("scroll", 1000);
+```
+This scrolls the browser toward the top edge of $element over a
+duration of 1000ms using Velocity’s "scroll" command. Notice that
+Velocity’s syntax is nearly identical to jQuery’s $.animate() function,
+which is covered later in this chapter.
+Animation reversal
+Animation reversal is a useful shorthand for undoing an element’s
+previous animation. By invoking the reverse command, you’re instructing
+an element to animate back to its values prior to its last animation. A
+common use for reversal is animating a modal dialogue into view, then
+hiding it when the user presses to close it.
+An unoptimized reversal workflow consists of keeping track of the
+specific properties that were last animated on each element that may later
+be subjected to reversal. Unfortunately, keeping track of prior animation
+states in UI code quickly becomes unwieldy. In contrast, with the
+reverse command, Velocity remembers everything for you.
+Mimicking the syntax of Velocity’s scroll command, the reverse
+command is called by passing "reverse" as Velocity’s first argument:
+Click here to view code image
+// First animation: Animate an element's opacity toward 0
+$element.velocity({ opacity: 0 });
+// Second animation: Animate back toward the starting opacity
+value of 1
+$element.velocity("reverse");
+When it comes to JavaScript’s animation timing control, there’s more
+than just reversal: JavaScript also allows you to globally slow down or
+speed up all JavaScript animations currently running. You’ll learn more
+about this powerful feature in Chapter 4, “Animation Workflow.”
+Physics-based motion
+The utility of physics in motion design reflects the core principle of what
+makes for a great user experience (UX) on your site: interfaces that flow
+naturally from the user’s input. Put another way, interfaces that pay
+tribute to how objects move in the real world.
+As a simple yet powerful introduction to physics-based motion Velocity
+offers an easing type based on spring physics. (We’ll fully explore the
+concept of easing in the next chapter.) With typical easing options, you
+pass in a string corresponding to a predefined easing curve (for example,
+"ease" or "easeInOutSine"). The spring physics easing type, in
+contrast, accepts a two-item array.
+Click here to view code image
+// Animate an element's width to "500px" using a spring
+physics easing of 500 tensions units and 20 friction units
+$element.velocity({ width: "500px" }, { easing: [ 500, 20 ]
+});
+The first item in the easing array represents the tension of the
+simulated spring and the second item represents friction. A higher tension
+value increases the total speed and bounciness of the animation. A lower
+friction value increases the vibration speed at the tail end of the
+animation. By tweaking these values, you can give each animation on your
+page a unique movement profile, which helps to reinforce the
+differentiation between their individual behaviors.
+Maintainable workflows
+Designing animation is an experimental process that requires repeated
+tweaking of timing and easing values to achieve a uniform feel across the
+page. Inevitably, just when you’ve perfected your design, a client will
+request significant changes. In these situations, maintainable code
+becomes critical.
+The JavaScript-based solution to this workflow problem is wonderfully
+elegant, and it’s covered in depth in Chapter 4, “Animation Workflow.”
+For now, here’s the short explanation: There are techniques for chaining
+together individual JavaScript animations—all with differing durations,
+easings, and so on—such that the timing of one animation does not affect
+another. This means you can change individual durations without redoing
+math and you can go back and easily set animations to run either in
+parallel or consecutively.
+Wrapping up
+When designing animations in CSS, you’re inherently limited to the
+features that the CSS specification provides. In JavaScript, because of the
+very nature of programming languages, third-party libraries have an
+infinite amount of logical control over motion design. Animation engines
+leverage this to provide powerful features that drastically improve
+workflow and expand the possibilities of interactive motion design. That’s
+what this book is all about: Designing beautiful animations as efficiently
+as possible.
+The next chapter explains how to use this book’s JavaScript animation
+engine of choice: Velocity.js. In mastering Velocity.js, you’ll understand
+how to leverage the features we’ve just introduced, and many more.
+
+<hr>
+<hr>
+<hr>
+<hr>
 <h3>Animation libraries & web sites</h3>
 
 <p>Animation makes us be able to tell stories and communicate emotions and ideas in a unique way. Here are 30 JavaScript animation libraries to use in your projects today.</p>
