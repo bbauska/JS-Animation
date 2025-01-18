@@ -1,5 +1,6 @@
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h1 id="title">JS Animations - Website Development, Libraries, &amp; Sample Scripts</h1>
-
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h3>Page scrolling</h3>
 Page scrolling is one of the most popular uses for JavaScript-based
 animation. A recent trend in web design is to create long webpages that
@@ -29,6 +30,7 @@ states in UI code quickly becomes unwieldy. In contrast, with the
 reverse command, Velocity remembers everything for you.
 Mimicking the syntax of Velocity’s scroll command, the reverse
 command is called by passing "reverse" as Velocity’s first argument:
+
 ```
 // First animation: Animate an element's opacity toward 0
 $element.velocity({ opacity: 0 });
@@ -51,11 +53,13 @@ concept of easing in the next chapter.) With typical easing options, you
 pass in a string corresponding to a predefined easing curve (for example,
 "ease" or "easeInOutSine"). The spring physics easing type, in
 contrast, accepts a two-item array.
-Click here to view code image
-// Animate an element's width to "500px" using a spring
-physics easing of 500 tensions units and 20 friction units
+
+```
+// Animate an element's width to "500px" using a spring physics easing of 500 tensions units and 20 friction units
 $element.velocity({ width: "500px" }, { easing: [ 500, 20 ]
 });
+```
+
 The first item in the easing array represents the tension of the
 simulated spring and the second item represents friction. A higher tension
 value increases the total speed and bounciness of the animation. A lower
@@ -63,7 +67,9 @@ friction value increases the vibration speed at the tail end of the
 animation. By tweaking these values, you can give each animation on your
 page a unique movement profile, which helps to reinforce the
 differentiation between their individual behaviors.
-Maintainable workflows
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h3>Maintainable workflows</h3>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 Designing animation is an experimental process that requires repeated
 tweaking of timing and easing values to achieve a uniform feel across the
 page. Inevitably, just when you’ve perfected your design, a client will
@@ -77,7 +83,9 @@ easings, and so on—such that the timing of one animation does not affect
 another. This means you can change individual durations without redoing
 math and you can go back and easily set animations to run either in
 parallel or consecutively.
-Wrapping up
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h3>Wrapping up</h3>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 When designing animations in CSS, you’re inherently limited to the
 features that the CSS specification provides. In JavaScript, because of the
 very nature of programming languages, third-party libraries have an
@@ -89,6 +97,282 @@ as possible.
 The next chapter explains how to use this book’s JavaScript animation
 engine of choice: Velocity.js. In mastering Velocity.js, you’ll understand
 how to leverage the features we’ve just introduced, and many more.
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h3>Types of JavaScript animation libraries</h3>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+There are many types of JavaScript animation libraries. Some replicate
+physics interactions in the browser. Some make WebGL and Canvas
+animations easier to maintain. Some focus on SVG animation. Some
+improve UI animation—this last type is the focus of this book.
+The two popular UI animation libraries are GSAP (download it at
+GreenSock.com) and Velocity (download it at VelocityJS.org). You’ll work
+with Velocity throughout this book since it’s free under the MIT license
+(GSAP requires licensing fees depending on a site’s business model), plus it
+boasts incredibly powerful features for writing clean and expressive
+animation code. It’s in use on many popular sites, including Tumblr, Gap,
+and Scribd.
+Oh, and it was created by the author of this book!
+Installing jQuery and Velocity
+You can download jQuery from jQuery.com, and Velocity from
+VelocityJS.org. To use them on your page—as with any JavaScript library
+—simply include <script></script> tags pointing toward the
+respective libraries before your page’s </body> tag. If you’re linking to
+pre-hosted versions of the libraries (as opposed to local copies on your
+computer), your code might look like this:
+
+```
+<html>
+<head>My Page</head>
+<body>
+My content.
+ <script src="//code.jquery.com/jquery-2.1.1.min.js"></
+script>
+<script src="//cdn.jsdelivr.net/velocity/1.1.0/
+velocity.min.js"> </script>
+</body>
+</html>
+```
+
+When using jQuery and Velocity together, include jQuery before Velocity.
+That’s it! Now you’re ready to roll.
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+Using Velocity: Basics
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+To get oriented to Velocity, we’ll start with the basic components:
+arguments, properties, values, and chaining. Since jQuery is so ubiquitous,
+it is also important to look at the relationship between Velocity and
+jQuery.
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+Velocity and jQuery
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+Velocity functions independently of jQuery, but the two can be used in
+combination. It’s often preferable to do so to benefit from jQuery’s
+chaining capabilities: When you’ve preselected an element using jQuery,
+you can extend it with a call to .velocity() to animate it:
+
+```
+// Assign a variable to a jQuery element object
+var $div = $("div");
+// Animate the element using Velocity
+$div.velocity({ opacity: 0 });
+This syntax is identical to jQuery's own animate function:
+$div.animate({ opacity: 0 });
+```
+
+All the examples in this website use Velocity in combination with jQuery,
+and therefore follow this syntax.
+<h4>Arguments</h4>
+Velocity accepts multiple arguments. Its first argument is an object that
+maps CSS properties to their desired final values. The properties and their
+accepted value types correspond directly to those used in CSS (if you’re
+unfamiliar with basic CSS properties, pick up an introductory HTML and
+CSS book before reading this one):
+
+```
+// Animate an element to a width of "500px" and to an opacity of 1.
+$element.velocity({ width: "500px", opacity: 1 });
+```
+
+<h4>Tip</h4>
+In JavaScript, if you’re providing a property value that contains letters (instead of only integers), 
+put the value in quotes.
+You can pass in an object specifying animation options as a second argument:
+
+```
+$element.velocity({ width: "500px", opacity: 1 }, { duration:
+400, easing: "swing" });
+```
+
+There’s also a shorthand argument syntax: Instead of passing in an
+options object as a second argument, you can use comma-separated
+argument syntax. This entails listing values for duration (which accepts an
+integer value), easing (a string value), and complete (a function value) in
+any comma-separated order. (You’ll learn what all of these options do
+momentarily.)
+
+```
+// Animate with a duration of 1000ms (and implicitly use the
+default easing value of "swing")
+$element.velocity({ top: 50 }, 1000);
+// Animate with a duration of 1000ms and an easing of "ease-
+in-out"
+$element.velocity({ top: 50 }, 1000, "ease-in-out");
+// Animate with an easing of "ease-out" (and implicitly use
+the default duration value of 400ms)
+$element.velocity({ top: 50 }, "ease-out");
+// Animate with a duration of 1000ms and a callback function
+to be triggered upon animation completion
+$element.velocity({ top: 50 }, 1000, function() {
+alert("Complete.") });
+```
+
+This shorthand syntax is a quick way of passing in animation options
+when you only need to specify the basic options (duration, easing, and
+complete). If you pass in an animation option other than these three, you
+must switch all options to the object syntax. Hence, if you want to specify
+a delay option, change the following syntax:
+
+```
+$element.velocity({ top: 50 }, 1000, "ease-in-out");
+```
+to this syntax:
+```
+// Re-specify the animation options used above, but include a delay value of 500ms
+$element.velocity({ top: 50 }, { duration: 1000, easing:
+"ease-in-out", delay: 500 });
+```
+
+You can’t do this:
+
+```
+
+// Incorrect: Divides animation options between the comma-
+separated syntax and the object syntax
+$element.velocity({ top: 50 }, 1000, { easing: "ease-in-out",
+delay: 500 });
+Properties
+There are two differences between CSS-based and JavaScript-based
+property animation.
+First, unlike in CSS, Velocity accepts only a single numeric value per
+CSS property. So, you can pass in:
+Click here to view code image
+$element.velocity({ padding: 10 });
+or
+Click here to view code image
+$element.velocity({ paddingLeft: 10, paddingRight: 10 });
+But you can’t pass in:
+Click here to view code image
+// Incorrect: The CSS property is being passed more than one
+numeric value.
+$element.velocity({ padding: "10 10 10 10" });
+If you do want to animate all four padding values (top, right,
+bottom, and left), list them out as separate properties:
+// Correct
+$element.velocity({
+paddingTop: 10,
+paddingRight: 10,
+paddingBottom: 10,
+paddingLeft: 10
+});
+Other common CSS properties that can take multiple numeric values
+include margin, transform, text-shadow, and box-shadow.
+Breaking up compound properties into their sub-properties for the
+purposes of animation gives you increased control over easing values. In
+CSS, you can specify only one property-wide easing type when animating
+multiple sub-properties within the parent padding property, for example.
+In JavaScript, you can specify independent easing values for each sub-
+property—the advantages of this will become apparent during the
+discussion of CSS transform property animation later in this chapter.
+Listing out independent sub-properties can also make your animation
+code easier to read and easier to maintain.
+The second difference between CSS-based and JavaScript-based
+property animation is that JavaScript properties drop the dashes between
+words and all words past the first must be capitalized. For example,
+padding-left becomes paddingLeft, and background-color
+becomes backgroundColor. Further note that JavaScript property
+names should not be in quotes:
+
+```
+// Correct
+$element.velocity({ paddingLeft: 10 });
+
+// Incorrect: Uses a dash and doesn't capitalize
+$element.velocity({ padding-left: 10 });
+// Incorrect: Uses quotes around the JavaScript-formatted property name
+$element.velocity({ "paddingLeft": 10 });
+```
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h3>Values</h3>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+Velocity supports the px, em, rem, %, deg, vw, and vh units. If you don’t
+provide a unit type with a numeric value, an appropriate one is
+automatically assigned based on the CSS property type. For most
+properties, px is the default unit, but a property that expects a rotation
+angle, such as rotateZ for example, would be automatically assigned the
+deg (degree) unit:
+
+```
+$element.velocity({
+  top: 50, // Defaults to the px unit type
+  left: "50%", // We manually specify the % unit type
+  rotateZ: 25 // Defaults to the deg unit type
+});
+```
+
+Explicitly declaring unit types for all property values increases your
+code’s legibility by making the contrast between the px unit and its
+alternatives more obvious when quickly eyeballing your code.
+Another advantage of Velocity over CSS is that it supports four value
+operators that can be optionally prefixed to a property value: +, -, *, and
+/. These directly correspond to their math operators in JavaScript. You
+can combine these value operators with an equals sign (=) to perform
+relative math operations. Refer to the inline code comments for examples:
+
+```
+$element.velocity({
+  top: "50px", // No operator. Animate toward 50 as expected.
+  left: "-50", // Negative operator. Animate toward -50 as expected.
+  width: "+=5rem", // Convert the current width value into its rem equivalent and add 5 more units.
+  height: "-10rem", // Convert the current height value into its rem equivalent and subtract 10 units.
+  paddingLeft: "*=2" // Double the current paddingLeft value.
+  paddingRight: "/=2" // Divide the current paddingLeft value into two.
+});
+```
+
+Velocity’s shorthand features, such as value operators, retain animation
+logic entirely within the animation engine. This not only keeps the code
+more concise by eliminating manual value calculation, but also improves
+performance by telling Velocity more about how you plan to animate your
+elements. The more logic that is performed within Velocity, the better
+Velocity can optimize your code for higher frame rates.
+Chaining
+When multiple Velocity calls are chained back-to-back on an element (or a
+series of elements), they automatically queue onto one another. This
+means that each animation begins once the preceding animation has
+completed:
+
+```
+$element
+// Animate the width and height properties
+.velocity({ width: "100px", height: "100px" })
+// When width and height are done animating, animate the
+top property
+.velocity({ top: "50px" });
+```
+
+<h3>Using Velocity: Options</h3>
+To round out this introduction to Velocity, let’s run through the most
+commonly used options: duration, easing, begin and complete, loop, delay,
+and display.
+<h3>Duration</h3>
+You can specify the duration option, which dictates how long an
+animation call takes to complete, in milliseconds (1/1000th of a second)
+or as one of three shorthand durations: "slow" (equivalent to 600ms),
+"normal" (400ms), or "fast" (200ms). When specifying a duration
+value in milliseconds, provide an integer value without any unit type:
+
+```
+// Animate with a duration of 1000ms (1 second)
+$element.velocity({ opacity: 1 }, { duration: 1000 });
+```
+
+or
+
+```
+$element.velocity({ opacity: 1}, { duration: "slow" });
+```
+
+The advantage to using the named shorthand durations is that they
+express the tempo of an animation (is it slow or is it fast?) when you’re
+reviewing your code. If you use these shorthands exclusively, they’ll also
+naturally lead to more uniform motion design across your site, since all of
+your animations will fall into one of three speed categories instead of each
+being passed an arbitrary value.
+
+<h3>Easing</h3>
+Easings are the mathematical function
 
 <hr>
 <hr>
