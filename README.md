@@ -6,15 +6,17 @@ animation. A recent trend in web design is to create long webpages that
 animate new pieces of content into view as the page is scrolled down.
 JavaScript animation libraries, such as Velocity, provide simple
 functions for scrolling elements into view:
-Click here to view code image
+
 ```
 $element.velocity("scroll", 1000);
 ```
+
 This scrolls the browser toward the top edge of $element over a
 duration of 1000ms using Velocity’s "scroll" command. Notice that
-Velocity’s syntax is nearly identical to jQuery’s $.animate() function,
-which is covered later in this chapter.
-Animation reversal
+Velocity’s syntax is nearly identical to jQuery’s `$.animate()` function,
+which is covered later in this module.
+
+<h3>Animation reversal</h3>
 Animation reversal is a useful shorthand for undoing an element’s
 previous animation. By invoking the reverse command, you’re instructing
 an element to animate back to its values prior to its last animation. A
@@ -27,12 +29,13 @@ states in UI code quickly becomes unwieldy. In contrast, with the
 reverse command, Velocity remembers everything for you.
 Mimicking the syntax of Velocity’s scroll command, the reverse
 command is called by passing "reverse" as Velocity’s first argument:
-Click here to view code image
+```
 // First animation: Animate an element's opacity toward 0
 $element.velocity({ opacity: 0 });
-// Second animation: Animate back toward the starting opacity
-value of 1
+// Second animation: Animate back toward the starting opacity value of 1
 $element.velocity("reverse");
+```
+
 When it comes to JavaScript’s animation timing control, there’s more
 than just reversal: JavaScript also allows you to globally slow down or
 speed up all JavaScript animations currently running. You’ll learn more
