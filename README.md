@@ -206,19 +206,15 @@ any comma-separated order. (You’ll learn what all of these options do
 momentarily.)</p>
 
 ```
-// Animate with a duration of 1000ms (and implicitly use the
-default easing value of "swing")
+// Animate with a duration of 1000ms (and implicitly use the default easing value of "swing")
 $element.velocity({ top: 50 }, 1000);
-// Animate with a duration of 1000ms and an easing of "ease-
-in-out"
+// Animate with a duration of 1000ms and an easing of "ease-in-out"
 $element.velocity({ top: 50 }, 1000, "ease-in-out");
-// Animate with an easing of "ease-out" (and implicitly use
-the default duration value of 400ms)
+// Animate with an easing of "ease-out" (and implicitly use the default duration value of 400ms)
 $element.velocity({ top: 50 }, "ease-out");
-// Animate with a duration of 1000ms and a callback function
-to be triggered upon animation completion
+// Animate with a duration of 1000ms and a callback function to be triggered upon animation completion
 $element.velocity({ top: 50 }, 1000, function() {
-alert("Complete.") });
+  alert("Complete.") });
 ```
 
 <p>This shorthand syntax is a quick way of passing in animation options
