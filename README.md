@@ -1,54 +1,73 @@
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 <h1 id="title">JS Animations - Website Development, Libraries, &amp; Sample Scripts</h1>
 <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-Chapter 1. Advantages of JavaScript
-Animation
+<h2 id="#ch1">Chapter 1. Advantages of JavaScript</h2>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h3>Animation</h3>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 In this chapter, we compare JavaScript to CSS for the purposes of
 animation, and introduce the unique features and workflow advantages
 provided by JavaScript.
+
 In short, we provide the context needed to help you understand
 everything you’ll learn about JavaScript in this book.
-JavaScript vs. CSS animation
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h3>JavaScript vs. CSS animation</h3>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
 There’s a false belief in the web development community that CSS
 animation is the only performant way to animate on the web. This
 misconception has led many developers to abandon JavaScript-based
 animation altogether, forcing them to
+
 Manage the entirety of user interface (UI) interaction within style
 sheets, which can quickly become difficult to maintain.
+
 Sacrifice real-time animation timing control, which is achievable
 only within JavaScript. (Timing control is necessary for designing
 animation into UIs that respond to a user’s drag input, like those
 found in mobile apps.)
+
 Forgo physics-based motion design, which allows elements on a
 webpage to behave like objects in the real world.
 Lose support for older browser versions, which remain popular
 throughout the world.
+
 JavaScript-based animation is actually often as fast as CSS-based
 animation. CSS animation is mistakenly considered to have a significant
 leg up because it’s most often compared to jQuery’s animation features,
 which are in fact very slow. However, alternative JavaScript animation
 libraries that bypass jQuery entirely deliver fantastic performance by
 streamlining their interaction with a page.
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 Note
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 One library of note, which we’ll be using throughout this
 book, is Velocity.js. It’s lightweight yet incredibly feature
 rich, and it mirrors jQuery’s animation syntax to help
 eliminate the learning curve.
+
 Of course, CSS is perfectly suited for hover state animations (turning a
 link blue when the mouse is positioned over it, for example), which are
 very often the extent to which basic webpages include animation. CSS
 transitions fit seamlessly into existing stylesheets, allowing developers to
 avoid bloating their pages with unnecessary JavaScript libraries. What’s
 more, CSS animation delivers blazing performance out of the box.
+
 But this book will demonstrate why JavaScript is often the superior
 choice for animations beyond simple hover state animations.
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 Great performance
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 JavaScript and jQuery are falsely conflated. JavaScript animation is fast.
+
 jQuery slows it down. Despite jQuery being tremendously powerful, it
 wasn’t designed to be a high-performance animation engine. It has no
 mechanism to avoid “layout thrashing,” in which a browser becomes
 overtasked with layout processing work while it’s in the process of
 animating.
+
 Further, because jQuery’s code base serves many purposes beyond
 animation, its memory consumption triggers garbage collections within
 the browser, causing animations to stutter unpredictably. Lastly, due to
@@ -57,37 +76,49 @@ users avoid sabotaging their UI with bad code, jQuery forgoes the
 recommended practice of using the requestAnimationFrame function,
 which browsers make available to drastically improve frame rates for web
 animation.
+
 JavaScript animation libraries that bypass jQuery entirely deliver
 fantastic performance by streamlining their interaction with a page. One
 library of note, which we’ll be using throughout this book, is Velocity.js.
 It’s lightweight, yet incredibly feature rich, and it mirrors jQuery’s
 animation syntax to help eliminate the learning curve.
+
 This is a topic we’ll explore in-depth in Chapter 7, “Animation
 Performance.” By learning the nuances of browser rendering performance,
 you’ll gain a foundation on which to build reliable animations for all
 browsers and devices, regardless of their individual processing power.
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 Features
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 Speed is, of course, not the only reason to use JavaScript—its abundance
 of features is equally as important. Let’s run through a few of the notable
 animation features that are exclusive to JavaScript.
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 Page scrolling
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 Page scrolling is one of the most popular uses for JavaScript-based
 animation. A recent trend in web design is to create long webpages that
 animate new pieces of content into view as the page is scrolled down.
 JavaScript animation libraries, such as Velocity, provide simple
 functions for scrolling elements into view:
-Click here to view code image
+
+```
 $element.velocity("scroll", 1000);
+```
+
 This scrolls the browser toward the top edge of $element over a
 duration of 1000ms using Velocity’s "scroll" command. Notice that
 Velocity’s syntax is nearly identical to jQuery’s $.animate() function,
 which is covered later in this chapter.
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 Animation reversal
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 Animation reversal is a useful shorthand for undoing an element’s
 previous animation. By invoking the reverse command, you’re instructing
 an element to animate back to its values prior to its last animation. A
 common use for reversal is animating a modal dialogue into view, then
 hiding it when the user presses to close it.
+
 An unoptimized reversal workflow consists of keeping track of the
 specific properties that were last animated on each element that may later
 be subjected to reversal. Unfortunately, keeping track of prior animation
@@ -95,32 +126,39 @@ states in UI code quickly becomes unwieldy. In contrast, with the
 reverse command, Velocity remembers everything for you.
 Mimicking the syntax of Velocity’s scroll command, the reverse
 command is called by passing "reverse" as Velocity’s first argument:
-Click here to view code image
+
+```
 // First animation: Animate an element's opacity toward 0
 $element.velocity({ opacity: 0 });
-// Second animation: Animate back toward the starting opacity
-value of 1
+// Second animation: Animate back toward the starting opacity value of 1
 $element.velocity("reverse");
+```
+
 When it comes to JavaScript’s animation timing control, there’s more
 than just reversal: JavaScript also allows you to globally slow down or
 speed up all JavaScript animations currently running. You’ll learn more
 about this powerful feature in Chapter 4, “Animation Workflow.”
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 Physics-based motion
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 The utility of physics in motion design reflects the core principle of what
 makes for a great user experience (UX) on your site: interfaces that flow
 naturally from the user’s input. Put another way, interfaces that pay
 tribute to how objects move in the real world.
+
 As a simple yet powerful introduction to physics-based motion Velocity
 offers an easing type based on spring physics. (We’ll fully explore the
 concept of easing in the next chapter.) With typical easing options, you
 pass in a string corresponding to a predefined easing curve (for example,
 "ease" or "easeInOutSine"). The spring physics easing type, in
 contrast, accepts a two-item array.
-Click here to view code image
-// Animate an element's width to "500px" using a spring
-physics easing of 500 tensions units and 20 friction units
+
+```
+// Animate an element's width to "500px" using a spring physics easing of 500 tensions units and 20 friction units
 $element.velocity({ width: "500px" }, { easing: [ 500, 20 ]
 });
+```
+
 The first item in the easing array represents the tension of the
 simulated spring and the second item represents friction. A higher tension
 value increases the total speed and bounciness of the animation. A lower
@@ -128,12 +166,15 @@ friction value increases the vibration speed at the tail end of the
 animation. By tweaking these values, you can give each animation on your
 page a unique movement profile, which helps to reinforce the
 differentiation between their individual behaviors.
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 Maintainable workflows
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 Designing animation is an experimental process that requires repeated
 tweaking of timing and easing values to achieve a uniform feel across the
 page. Inevitably, just when you’ve perfected your design, a client will
 request significant changes. In these situations, maintainable code
 becomes critical.
+
 The JavaScript-based solution to this workflow problem is wonderfully
 elegant, and it’s covered in depth in Chapter 4, “Animation Workflow.”
 For now, here’s the short explanation: There are techniques for chaining
@@ -142,7 +183,10 @@ easings, and so on—such that the timing of one animation does not affect
 another. This means you can change individual durations without redoing
 math and you can go back and easily set animations to run either in
 parallel or consecutively.
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 Wrapping up
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 When designing animations in CSS, you’re inherently limited to the
 features that the CSS specification provides. In JavaScript, because of the
 very nature of programming languages, third-party libraries have an
@@ -151,25 +195,33 @@ leverage this to provide powerful features that drastically improve
 workflow and expand the possibilities of interactive motion design. That’s
 what this book is all about: Designing beautiful animations as efficiently
 as possible.
+
 The next chapter explains how to use this book’s JavaScript animation
 engine of choice: Velocity.js. In mastering Velocity.js, you’ll understand
 how to leverage the features we’ve just introduced, and many more.
-Chapter 2. Animating with Velocity.js
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h2 id="#ch2">Chapter 2. Animating with Velocity.js</h2>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 In this chapter, you’ll learn the features, commands, and options provided
 by Velocity.js. If you’re familiar with jQuery-based animation, you already
 know how to use Velocity; it functions nearly identically to jQuery’s
-$.animate() function.
+$.animate() function
+
 But regardless of your existing knowledge, the methodical feature
 breakdowns in this chapter will introduce you to the nuances of animation
 engine behavior. Mastering these nuances will help take you from novice
 to professional. Even if you’re already intimately familiar with JavaScript
 animation and Velocity.js, do yourself a favor and skim this chapter.
 You’re bound to discover something you didn’t realize you could do.
-Types of JavaScript animation libraries
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h3>Types of JavaScript animation libraries</h3>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
 There are many types of JavaScript animation libraries. Some replicate
 physics interactions in the browser. Some make WebGL and Canvas
 animations easier to maintain. Some focus on SVG animation. Some
 improve UI animation—this last type is the focus of this book.
+
 The two popular UI animation libraries are GSAP (download it at
 GreenSock.com) and Velocity (download it at VelocityJS.org). You’ll work
 with Velocity throughout this book since it’s free under the MIT license
@@ -177,15 +229,19 @@ with Velocity throughout this book since it’s free under the MIT license
 boasts incredibly powerful features for writing clean and expressive
 animation code. It’s in use on many popular sites, including Tumblr, Gap,
 and Scribd.
+
 Oh, and it was created by the author of this book!
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 Installing jQuery and Velocity
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 You can download jQuery from jQuery.com, and Velocity from
 VelocityJS.org. To use them on your page—as with any JavaScript library
 —simply include <script></script> tags pointing toward the
 respective libraries before your page’s </body> tag. If you’re linking to
 pre-hosted versions of the libraries (as opposed to local copies on your
 computer), your code might look like this:
-Click here to view code image
+
+```
 <html>
 <head>My Page</head>
 <body>
@@ -196,87 +252,118 @@ script>
 velocity.min.js"> </script>
 </body>
 </html>
-When using jQuery and Velocity together, include jQuery before
-Velocity.
+```
+
+When using jQuery and Velocity together, include jQuery before Velocity.
 That’s it! Now you’re ready to roll.
-Using Velocity: Basics
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h4>Using Velocity: Basics</h4>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 To get oriented to Velocity, we’ll start with the basic components:
 arguments, properties, values, and chaining. Since jQuery is so ubiquitous,
 it is also important to look at the relationship between Velocity and
 jQuery.
-Velocity and jQuery
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h4>Velocity and jQuery</h4>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 Velocity functions independently of jQuery, but the two can be used in
 combination. It’s often preferable to do so to benefit from jQuery’s
 chaining capabilities: When you’ve preselected an element using jQuery,
 you can extend it with a call to .velocity() to animate it:
-Click here to view code image
+
+```
 // Assign a variable to a jQuery element object
 var $div = $("div");
 // Animate the element using Velocity
 $div.velocity({ opacity: 0 });
+```
+
 This syntax is identical to jQuery's own animate function:
+
+```
 $div.animate({ opacity: 0 });
+```
+
 All the examples in this book use Velocity in combination with jQuery,
 and therefore follow this syntax.
-Arguments
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h4>Arguments</h4>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 Velocity accepts multiple arguments. Its first argument is an object that
 maps CSS properties to their desired final values. The properties and their
 accepted value types correspond directly to those used in CSS (if you’re
 unfamiliar with basic CSS properties, pick up an introductory HTML and
 CSS book before reading this one):
-Click here to view code image
-// Animate an element to a width of "500px" and to an opacity
-of 1.
+
+```
+// Animate an element to a width of "500px" and to an opacity of 1.
 $element.velocity({ width: "500px", opacity: 1 });
-Tip
-In JavaScript, if you’re providing a property value that
-contains letters (instead of only integers), put the value in
-quotes.
-You can pass in an object specifying animation options as a second
-argument:
-Click here to view code image
+```
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h4>Tip</h4>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+In JavaScript, if you’re providing a property value that contains letters (instead 
+of only integers), put the value in quotes.
+
+You can pass in an object specifying animation options as a second argument:
+
+```
 $element.velocity({ width: "500px", opacity: 1 }, { duration:
 400, easing: "swing" });
-There’s also a shorthand argument syntax: Instead of passing in an
-options object as a second argument, you can use comma-separated
-argument syntax. This entails listing values for duration (which accepts an
-integer value), easing (a string value), and complete (a function value) in
-any comma-separated order. (You’ll learn what all of these options do
-momentarily.)
-Click here to view code image
-// Animate with a duration of 1000ms (and implicitly use the
-default easing value of "swing")
+```
+
+There’s also a shorthand argument syntax: Instead of passing in an options object as a 
+second argument, you can use comma-separated argument syntax. This entails listing 
+values for duration (which accepts an integer value), easing (a string value), and 
+complete (a function value) in any comma-separated order. (You’ll learn what all 
+of these options do momentarily.)
+
+```
+// Animate with a duration of 1000ms (and implicitly use the default easing value of "swing")
 $element.velocity({ top: 50 }, 1000);
-// Animate with a duration of 1000ms and an easing of "ease-
-in-out"
+// Animate with a duration of 1000ms and an easing of "ease-in-out"
 $element.velocity({ top: 50 }, 1000, "ease-in-out");
-// Animate with an easing of "ease-out" (and implicitly use
-the default duration value of 400ms)
+// Animate with an easing of "ease-out" (and implicitly use the default duration value of 400ms)
 $element.velocity({ top: 50 }, "ease-out");
-// Animate with a duration of 1000ms and a callback function
-to be triggered upon animation completion
+// Animate with a duration of 1000ms and a callback function to be triggered upon animation completion
 $element.velocity({ top: 50 }, 1000, function() {
 alert("Complete.") });
+```
+
 This shorthand syntax is a quick way of passing in animation options
 when you only need to specify the basic options (duration, easing, and
 complete). If you pass in an animation option other than these three, you
 must switch all options to the object syntax. Hence, if you want to specify
 a delay option, change the following syntax:
-Click here to view code image
+
+```
 $element.velocity({ top: 50 }, 1000, "ease-in-out");
+```
+
 to this syntax:
-Click here to view code image
-// Re-specify the animation options used above, but include a
-delay value of 500ms
+
+```
+// Re-specify the animation options used above, but include a delay value of 500ms
 $element.velocity({ top: 50 }, { duration: 1000, easing:
 "ease-in-out", delay: 500 });
+```
+
 You can’t do this:
-Click here to view code image
+
+```
 // Incorrect: Divides animation options between the comma-
 separated syntax and the object syntax
 $element.velocity({ top: 50 }, 1000, { easing: "ease-in-out",
 delay: 500 });
-Properties
+```
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h4>Properties</h4>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 There are two differences between CSS-based and JavaScript-based
 property animation.
 First, unlike in CSS, Velocity accepts only a single numeric value per
@@ -284,22 +371,31 @@ CSS property. So, you can pass in:
 Click here to view code image
 $element.velocity({ padding: 10 });
 or
-Click here to view code image
+
+```
 $element.velocity({ paddingLeft: 10, paddingRight: 10 });
+```
+
 But you can’t pass in:
-Click here to view code image
-// Incorrect: The CSS property is being passed more than one
-numeric value.
+
+```
+// Incorrect: The CSS property is being passed more than one numeric value.
 $element.velocity({ padding: "10 10 10 10" });
-If you do want to animate all four padding values (top, right,
-bottom, and left), list them out as separate properties:
+```
+
+If you do want to animate all four padding values (top, right, bottom, and left), 
+list them out as separate properties:
+
+```
 // Correct
 $element.velocity({
-paddingTop: 10,
-paddingRight: 10,
-paddingBottom: 10,
-paddingLeft: 10
+  paddingTop: 10,
+  paddingRight: 10,
+  paddingBottom: 10,
+  paddingLeft: 10
 });
+```
+
 Other common CSS properties that can take multiple numeric values
 include margin, transform, text-shadow, and box-shadow.
 Breaking up compound properties into their sub-properties for the
@@ -317,27 +413,32 @@ words and all words past the first must be capitalized. For example,
 padding-left becomes paddingLeft, and background-color
 becomes backgroundColor. Further note that JavaScript property
 names should not be in quotes:
-Click here to view code image
+
+```
 // Correct
 $element.velocity({ paddingLeft: 10 });
 // Incorrect: Uses a dash and doesn't capitalize
 $element.velocity({ padding-left: 10 });
-// Incorrect: Uses quotes around the JavaScript-formatted
-property name
+// Incorrect: Uses quotes around the JavaScript-formatted property name
 $element.velocity({ "paddingLeft": 10 });
-Values
+```
+
+<h4>Values</h4>
 Velocity supports the px, em, rem, %, deg, vw, and vh units. If you don’t
 provide a unit type with a numeric value, an appropriate one is
 automatically assigned based on the CSS property type. For most
 properties, px is the default unit, but a property that expects a rotation
 angle, such as rotateZ for example, would be automatically assigned the
 deg (degree) unit:
-Click here to view code image
+
+```
 $element.velocity({
 top: 50, // Defaults to the px unit type
 left: "50%", // We manually specify the % unit type
 rotateZ: 25 // Defaults to the deg unit type
 });
+```
+
 Explicitly declaring unit types for all property values increases your
 code’s legibility by making the contrast between the px unit and its
 alternatives more obvious when quickly eyeballing your code.
@@ -346,60 +447,76 @@ operators that can be optionally prefixed to a property value: +, -, *, and
 /. These directly correspond to their math operators in JavaScript. You
 can combine these value operators with an equals sign (=) to perform
 relative math operations. Refer to the inline code comments for examples:
-Click here to view code image
+
+```
 $element.velocity({
-top: "50px", // No operator. Animate toward 50 as expected.
-left: "-50", // Negative operator. Animate toward -50 as
-expected.
-width: "+=5rem", // Convert the current width value into
-its rem equivalent and add 5 more units.
-height: "-10rem", // Convert the current height value into
-its rem equivalent and subtract 10 units.
-paddingLeft: "*=2" // Double the current paddingLeft value.
-paddingRight: "/=2" // Divide the current paddingLeft value
-into two.
+  top: "50px", // No operator. Animate toward 50 as expected.
+  left: "-50", // Negative operator. Animate toward -50 as expected.
+  width: "+=5rem", // Convert the current width value into its rem equivalent and add 5 more units.
+  height: "-10rem", // Convert the current height value into its rem equivalent and subtract 10 units.
+  paddingLeft: "*=2" // Double the current paddingLeft value.
+  paddingRight: "/=2" // Divide the current paddingLeft value into two.
 });
+```
+
 Velocity’s shorthand features, such as value operators, retain animation
 logic entirely within the animation engine. This not only keeps the code
 more concise by eliminating manual value calculation, but also improves
 performance by telling Velocity more about how you plan to animate your
 elements. The more logic that is performed within Velocity, the better
 Velocity can optimize your code for higher frame rates.
-Chaining
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h4>Chaining</h4>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 When multiple Velocity calls are chained back-to-back on an element (or a
 series of elements), they automatically queue onto one another. This
 means that each animation begins once the preceding animation has
 completed:
-Click here to view code image
+
+```
 $element
 // Animate the width and height properties
 .velocity({ width: "100px", height: "100px" })
 // When width and height are done animating, animate the
 top property
 .velocity({ top: "50px" });
-Using Velocity: Options
+```
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h4>Using Velocity: Options</h4>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 To round out this introduction to Velocity, let’s run through the most
 commonly used options: duration, easing, begin and complete, loop, delay,
 and display.
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 Duration
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 You can specify the duration option, which dictates how long an
 animation call takes to complete, in milliseconds (1/1000th of a second)
 or as one of three shorthand durations: "slow" (equivalent to 600ms),
 "normal" (400ms), or "fast" (200ms). When specifying a duration
 value in milliseconds, provide an integer value without any unit type:
-Click here to view code image
+
+```
 // Animate with a duration of 1000ms (1 second)
 $element.velocity({ opacity: 1 }, { duration: 1000 });
+```
+
 or
-Click here to view code image
+
+```
 $element.velocity({ opacity: 1}, { duration: "slow" });
+```
+
 The advantage to using the named shorthand durations is that they
 express the tempo of an animation (is it slow or is it fast?) when you’re
 reviewing your code. If you use these shorthands exclusively, they’ll also
 naturally lead to more uniform motion design across your site, since all of
 your animations will fall into one of three speed categories instead of each
 being passed an arbitrary value.
-Easing
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h4>Easing</h4>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 Easings are the mathematical functions that define how fast or slow
 animations occur in different parts of an animation’s total duration. For
 example, an easing type of "ease-in-out" indicates that the animation
@@ -411,6 +528,7 @@ speed until the animation completes. An easing type of "ease-out" is
 the converse of this: the animation starts and continues at a constant
 speed before it gradually decelerates during the final part of the
 animation.
+
 Much like the physics-based motion discussed in Chapter 1,
 “Advantages of JavaScript Animation,” easings give you the power to
 inject personality into your animations. Take, for example, how robotic an
@@ -420,6 +538,7 @@ feel is the result of an association with linear robotic motion in the real
 world: Self-guided mechanical objects typically move in straight lines and
 operate at constant speeds because there’s neither an aesthetic nor an
 organic reason for them to do otherwise.
+
 In contrast, living things—whether it’s the human body or trees
 blowing in the wind—never move at constant speed in the real world.
 Friction and other external forces cause them to move at varying speeds.
@@ -430,27 +549,38 @@ accelerate away from your fingers when you swipe it off-screen. If the
 menu were to instead move away from your fingers at a constant speed—
 like a robotic arm—you’d feel as if the swipe merely set off a chain of
 motion events that were outside your control.
+
 You’ll learn more about the power of easing types in Chapter 3,
 “Motion Design Theory.” For now, let’s run through all of Velocity’s
 available easing values:
+
 jQuery UI’s trigonometric easings. For a complete listing of these
 easing equations, as well as interactive demonstrations of their
 acceleration profiles, refer to the demos on easings.net.
-Click here to view code image
+
+```
 $element.velocity({ width: "100px" }, "easeInOutSine");
+```
+
 CSS’s easings: "ease-in", "ease-out", "ease-in-out", and
 "ease" (a subtler version of "ease-in-out").
-Click here to view code image
+
+```
 $element.velocity({ width: "100px" }, "ease-in-out");
+```
+
 CSS’s Bézier curves: The Bézier curve easing allows complete control
 over the structure of an easing’s acceleration curve. A Bézier curve
 is defined by specifying the height of four equidistant points on a
 chart, which Velocity accepts in the format of a four-item array of
 decimal values. Visit cubic-bezier.com for an interactive guide to
 creating Bézier curves.
-Click here to view code image
+
+```
 $element.velocity({ width: "100px" }, [ 0.17, 0.67, 0.83,
 0.67 ]);
+```
+
 Spring physics: This easing type mimics the bouncy behavior of a
 spring that’s been stretched then suddenly released. As with the
 classical physics equation that defines the motion of a spring, this
@@ -458,38 +588,53 @@ easing type lets you pass in a two-item array in the form of [
 tension, friction ]. A higher tension (default: 500) increases total
 speed and bounciness. A lower friction (default: 20) increases
 ending vibration speed.
-Click here to view code image
+
+```
 $element.velocity({ width: "100px" }, [ 250, 15 ]);
+```
+
 "spring" easing is a predefined implementation of the spring
 physics easing that’s handy to use when you don’t want to
 experiment with tension and friction values.
-Click here to view code image
+
+```
 $element.velocity({ width: "100px" }, "spring");
+```
+
 Remember that you can also pass in the easing option as an explicitly
 defined property in an options object argument:
-Click here to view code image
+
+```
 $element.velocity({ width: 50 }, { easing: "spring" });
+```
+
 Do not be overwhelmed by the number of easing options available to
 you. You’ll most often rely on the CSS easing types and the “spring”
 easing, which suit the vast majority of animation use cases. The most
 complex easing type, the Bézier curve, is most often employed by
 developers who have a highly specific easing style in mind and aren’t
 afraid to get their hands dirty.
-Note
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h4>Note</h4>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 The rest of the Velocity options in this section must be
 explicitly passed into an options object. Unlike those
 already described, these additional options cannot be
 supplied to Velocity in the shorthand comma-separated
 syntax.
-Begin and Complete
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h4>Begin and Complete</h4>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 The begin and complete options allow you to specify functions to be
 triggered at certain points in an animation: Pass the begin option a
 function to be called prior to the start of an animation. Conversely, pass
 the complete option a function to be called at the completion of an
 animation.
+
 With both options, the function is called once per animation call, even
 if multiple elements are being animated at once:
-Click here to view code image
+
+```
 var $divs = $("div");
 $divs.velocity(
 { opacity: 0 },
@@ -500,7 +645,11 @@ begin: function () { console.log("Begin!"); },
 complete: function () { console.log("Complete!"); }
 }
 );
-Callback Functions
+```
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h4>Callback Functions</h4>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 These options are commonly referred to as “callback functions”
 (or “callbacks”) since they are “called” when certain events occur
 in the future. Callbacks are useful for firing events that are
@@ -508,47 +657,67 @@ dependent on the visibility of elements. For example, if an
 element starts at invisible then animates toward an opacity of 1, it
 may be appropriate to subsequently trigger a UI event that
 modifies the new content once users are able to see it.
+
 Remember that you don’t need to use callbacks to queue
 animations onto one another; animations automatically fire
 sequentially when more than one is assigned to a single element
 or set of elements. Callbacks are for the queuing of non-animation
 logic.
-Loop
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h4>Loop</h4>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 Set the loop option to an integer to specify the number of times an
 animation should alternate between the values in the call’s property map
 and the element’s values prior to the call:
-Click here to view code image
+
+```
 $element.velocity({ height: "10em" }, { loop: 2 });
+```
+
 If the element’s original height was 5em, its height would alternate
 between 5em and 10em twice.
+
 If the begin or complete options are used with a looped call, they
 are triggered once each—at the very beginning and end of the total loop
 sequence, respectively; they are not retriggered for each loop alternation.
 Instead of passing in an integer, you can also pass in true to trigger
 infinite looping:
-Click here to view code image
+
+```
 $element.velocity({ height: "10em" }, { loop: true });
+```
+
 Infinite loops ignore the complete callback since they don’t naturally
 end. They can, however, be manually stopped via Velocity’s stop
 command:
+
+```
 $element.velocity("stop");
+```
+
 Non-infinite loops are useful for animation sequences that would
 otherwise require the repetition of chained animation code. For example,
 if you were to bounce an element up and down twice (perhaps to alert the
 user of a new message awaiting them), the non-optimized code would look
 like this:
-Click here to view code image
+
+```
 $element
 // Assume translateY starts at "0px"
 .velocity({ translateY: "100px" })
 .velocity({ translateY: "0px" })
 .velocity({ translateY: "100px" })
 .velocity({ translateY: "0px" });
+```
+
 The more compact and easier to maintain version of this code would
 look like this:
-Click here to view code image
+
+```
 // Repeat (loop) this animation twice
 $element.velocity({ translateY: "100px" }, { loop: 2 });
+```
+
 With this optimized version, if you have a change of heart about how
 much the top value should be changed by (currently "100px"), you need
 only change the top value in one part of the code. If there are many such
@@ -558,33 +727,50 @@ Infinite looping is tremendously helpful for loading indicators, which
 typically animate indefinitely until data has finished loading.
 First, make the loading element appear to pulsate by infinitely looping
 its opacity from visible to invisible:
-Click here to view code image
+
+```
 // Assume opacity starts at 1 (fully visible)
 $element.velocity({ opacity: 0 }, { loop: true });
+```
+
 Later, once the data has finished loading, you can stop the animation,
 then hide the element:
-Click here to view code image
+
+```
 $element
 // First stop the infinite loop...
 .velocity("stop")
 // ... so you can give the element a new animation,
 // in which you can animate it back to invisibility
 .velocity({ opacity: 0 });
-Delay
+```
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h4>Delay</h4>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 Specify the delay option in milliseconds to insert a pause before an
 animation begins. The delay option’s purpose is to retain an animation’s
 timing logic entirely within Velocity—as opposed to relying on jQuery’s
 $.delay() function to change when a Velocity animation starts:
-Click here to view code image
+
+```
 // Wait 100ms before animating opacity toward 0
 $element.velocity({ opacity: 0 }, { delay: 100 });
+```
+
 You can set the delay option with the loop option to create a pause
 between loop alternations:
-Click here to view code image
+
+```
 // Loop four times, waiting 100ms between each loop
 $element.velocity({ height: "+=50px" }, { loop: 4, delay: 100
 });
-Display and Visibility
+```
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h4>Display and Visibility</h4>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
 Velocity’s display and visibility options correspond directly to their
 CSS counterparts, and accept the same values, including: "none",
 "inline", "inline-block", "block", "flex", and so on. In
@@ -594,22 +780,33 @@ anchors and spans default to "inline", whereas divs and most other
 elements default to "block".) Velocity’s visibility option, like its CSS
 counterpart, accepts the "hidden", "visible", and "collapse"
 values.
+
 Within Velocity, when the display option is set to "none" (or when
 visibility is set to "hidden"), the element’s CSS property is set
 accordingly once the animation has completed. This effectively works to
 hide an element upon completion of an animation, and is useful in
 conjunction with animating an element’s opacity down to 0 (where the
 intention is to fade an element off the page):
-Click here to view code image
-// Fade an element to opacity:0 then remove it from the page's
-flow
+
+```
+// Fade an element to opacity:0 then remove it from the page's flow
 $element.velocity({ opacity: 0 }, { display: "none" });
-Note
+```
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h4>Note</h4>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 The code above effectively replaces the jQuery equivalent:
+
+```
 $element
 .animate({ opacity:0 })
 .hide();
-Quick Review of Visibility and Display
+```
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h4>Quick Review of Visibility and Display</h4>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 For reference, the CSS display property dictates how an element
 affects the positioning of the elements surrounding it and
 contained within it. In contrast, the CSS visibility property
@@ -621,48 +818,69 @@ instead set to "display: none", the element will be fully
 removed from the page’s flow, and all elements within and around
 it will fill into the removed element’s space as if the element never
 existed.
+
 Note that, instead of removing an element from the page’s flow, you
 can simply mark the element as both invisible and non-interactive by
 setting its visibility to "hidden". This is useful for when you want a
 hidden element to continue taking up space on the page:
-Click here to view code image
+
+```
 // Fade an element to opacity:0 then make it non-interactive
 $element.velocity({ opacity: 0 }, { visibility: "hidden" });
+```
+
 Now, let’s consider animations in the opposite direction (showing
 elements instead of hiding elements): When display or visibility is
 set to a value other than "none" or "hidden", the value is set before the
 animation begins so the element is visible throughout the duration of the
 ensuing animation. In other words, you’re undoing the hiding that
 occurred when the element was previously removed from view.
+
 Below, display is set to "block" before the element begins fading
 in:
-Click here to view code image
+
+```
 $element.velocity({ opacity: 1 }, { display: "block" });
+```
+
 This effectively replaces the jQuery equivalent:
+
+```
 $element
 .show()
 .animate({ opacity: 0 });
-Tip
+```
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h4>Tip</h4>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 For a complete overview of Velocity’s animation options,
 consult the documentation at VelocityJS.org.
-Containing Animation Logic
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h4>Containing Animation Logic</h4>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 As with Velocity’s delay option, Velocity’s incorporation of CSS
 display and visibility setting allows for animation logic to
 be fully contained within Velocity. In production code, whenever
 an element is faded into or out of view, it’s almost always
 accompanied by a change in display or visibility.
+
 Leveraging Velocity shorthands like these helps you keep your
 code clean and maintainable, since it’s less dependent on external
 jQuery functions and free of repetitive helper functions that
 commonly bloat animation logic.
+
 Note that Velocity includes shorthands for the opacity toggling
 animations demonstrated above. They function identically to
 jQuery’s fadeIn and fadeOut functions. You simply pass the
 corresponding command into Velocity as the first argument, and
 you pass in an options object, if desired, as normal:
-Click here to view code image
+
+```
 $element.velocity(“fadeIn”, { duration: 1000 });
 $element.velocity(“fadeOut”, { duration: 1000 });
+```
+
 Using Velocity: Additional features
 Additional Velocity.js features that are worthy of note include: the reverse
 command, scrolling, colors, and transforms (translation, rotate, and scale).
@@ -674,24 +892,32 @@ queued up with other chained Velocity calls.
 Reverse defaults to the options (duration, easing, etc.) used in the
 element’s prior Velocity call. However, you can override these options by
 passing in a new options object:
-Click here to view code image
-// Animate back to the original values using the prior
-Velocity call's options
+
+```
+// Animate back to the original values using the prior Velocity call's options
 $element.velocity("reverse");
+```
+
 or
-Click here to view code image
-// Do the same as above, but replace the prior call's duration
-with a value of 2000ms
+
+```
+// Do the same as above, but replace the prior call's duration with a value of 2000ms
 $element.velocity("reverse", { duration: 2000 });
-Note
-The previous call’s begin and complete options are
-ignored by the reverse command; reverse never re-
-calls callback functions.
-Scrolling
+```
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<h4>Note</h4>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+The previous call’s begin and complete options are ignored by the reverse command; 
+reverse never re-calls callback functions.
+
+<h4>Scrolling</h4>
 To scroll the browser to the top edge of an element, pass in "scroll" as
 Velocity’s first argument. The scroll command behaves identically to a
 standard Velocity call; it can take options and is queued up with other
 chained Velocity calls:
+
+
 Click here to view code image
 $element
 .velocity("scroll", { duration: 1000, easing: "spring" })
@@ -704,6 +930,7 @@ you can use the container option, which accepts either a jQuery object
 or a raw element. Note that the container element of the CSS position
 property must be set to either relative, absolute, or fixed—static
 won’t do the trick:
+
 Click here to view code image
 // Scroll $element into view of $("#container")
 $element.velocity("scroll", { container: $("#container") });
@@ -712,11 +939,13 @@ to a parent element—the scroll command is always called on the element
 that’s being scrolled into view.
 By default, scrolling occurs on the y-axis. Pass in the axis: "x"
 option to scroll horizontally instead of vertically:
+
 Click here to view code image
 // Scroll the browser to the *left* edge of the targeted div.
 $element.velocity("scroll", { axis: "x" });
 Finally, the scroll command also uniquely takes an offset option,
 specified in pixels, which offsets the target scroll position:
+
 Click here to view code image
 // Scroll to a position 50px *above* the element's top edge.
 $element.velocity("scroll", { duration: 1000, offset: "-50px"
@@ -734,6 +963,7 @@ property, as well as the alpha component. Red, green, and blue range in
 value from 0 to 255, and alpha (which is equivalent to opacity) ranges
 from 0 to 1.
 Refer to the inline comments below for examples:
+
 Click here to view code image
 $element.velocity({
 // Animate backgroundColor to the hex value for black
@@ -772,6 +1002,7 @@ works when jQuery is not present on the page. Accordingly, instead of
 chaining an animation call onto a jQuery element object—as shown in the
 previous examples in this chapter—the targeted element(s) are passed
 directly into the animation call as the first argument:
+
 Click here to view code image
 Velocity(element, { opacity: 0.5 }, 1000); // Velocity
 Velocity retains the same syntax as jQuery’s $.animate() even when
@@ -798,6 +1029,7 @@ browsers.) As with jQuery’s element selector syntax, you simply pass
 querySelectorAll a CSS selector (the same selectors you use in your
 stylesheets for targeting elements), and it will return all matched elements
 in the form of an array:
+
 Click here to view code image
 document.querySelectorAll("body"); // Get the body element
 document.querySelectorAll(".squares"); // Get all elements
@@ -809,6 +1041,7 @@ document.querySelectorAll("#main div"); // Get all divs within
 "main"
 If you assign the result of one of these lookups to a variable, you can
 then reuse that variable to animate the targeted element(s):
+
 Click here to view code image
 // Get all div elements
 var divs = document.querySelectorAll("div");
@@ -816,6 +1049,7 @@ var divs = document.querySelectorAll("div");
 Velocity(divs, { opacity: 0 }, 1000);
 Since you’re no longer extending jQuery element objects, you may be
 wondering how to chain animations back-to-back, like this:
+
 Click here to view code image
 // These chain onto one another
 $element
@@ -823,6 +1057,7 @@ $element
 .velocity({ opacity: 1 }, 1000);
 To reenact this pattern without the aid of jQuery, simply call
 animations one after another:
+
 Click here to view code image
 // Animations on the same element automatically chain onto one
 another.
@@ -1280,10 +1515,12 @@ available easing values:
 jQuery UI’s trigonometric easings. For a complete listing of these
 easing equations, as well as interactive demonstrations of their
 acceleration profiles, refer to the demos on easings.net.
+
 Click here to view code image
 $element.velocity({ width: "100px" }, "easeInOutSine");
 CSS’s easings: "ease-in", "ease-out", "ease-in-out", and
 "ease" (a subtler version of "ease-in-out").
+
 Click here to view code image
 $element.velocity({ width: "100px" }, "ease-in-out");
 CSS’s Bézier curves: The Bézier curve easing allows complete control
@@ -1292,6 +1529,7 @@ is defined by specifying the height of four equidistant points on a
 chart, which Velocity accepts in the format of a four-item array of
 decimal values. Visit cubic-bezier.com for an interactive guide to
 creating Bézier curves.
+
 Click here to view code image
 $element.velocity({ width: "100px" }, [ 0.17, 0.67, 0.83,
 0.67 ]);
@@ -1302,15 +1540,18 @@ easing type lets you pass in a two-item array in the form of [
 tension, friction ]. A higher tension (default: 500) increases total
 speed and bounciness. A lower friction (default: 20) increases
 ending vibration speed.
+
 Click here to view code image
 $element.velocity({ width: "100px" }, [ 250, 15 ]);
 "spring" easing is a predefined implementation of the spring
 physics easing that’s handy to use when you don’t want to
 experiment with tension and friction values.
+
 Click here to view code image
 $element.velocity({ width: "100px" }, "spring");
 Remember that you can also pass in the easing option as an explicitly
 defined property in an options object argument:
+
 Click here to view code image
 $element.velocity({ width: 50 }, { easing: "spring" });
 Do not be overwhelmed by the number of easing options available to
@@ -1333,6 +1574,7 @@ the complete option a function to be called at the completion of an
 animation.
 With both options, the function is called once per animation call, even
 if multiple elements are being animated at once:
+
 Click here to view code image
 var $divs = $("div");
 $divs.velocity(
@@ -1361,6 +1603,7 @@ Loop
 Set the loop option to an integer to specify the number of times an
 animation should alternate between the values in the call’s property map
 and the element’s values prior to the call:
+
 Click here to view code image
 $element.velocity({ height: "10em" }, { loop: 2 });
 If the element’s original height was 5em, its height would alternate
@@ -1370,6 +1613,7 @@ are triggered once each—at the very beginning and end of the total loop
 sequence, respectively; they are not retriggered for each loop alternation.
 Instead of passing in an integer, you can also pass in true to trigger
 infinite looping:
+
 Click here to view code image
 $element.velocity({ height: "10em" }, { loop: true });
 Infinite loops ignore the complete callback since they don’t naturally
@@ -1381,6 +1625,7 @@ otherwise require the repetition of chained animation code. For example,
 if you were to bounce an element up and down twice (perhaps to alert the
 user of a new message awaiting them), the non-optimized code would look
 like this:
+
 Click here to view code image
 $element
 // Assume translateY starts at "0px"
@@ -1390,6 +1635,7 @@ $element
 .velocity({ translateY: "0px" });
 The more compact and easier to maintain version of this code would
 look like this:
+
 Click here to view code image
 // Repeat (loop) this animation twice
 $element.velocity({ translateY: "100px" }, { loop: 2 });
@@ -1402,11 +1648,13 @@ Infinite looping is tremendously helpful for loading indicators, which
 typically animate indefinitely until data has finished loading.
 First, make the loading element appear to pulsate by infinitely looping
 its opacity from visible to invisible:
+
 Click here to view code image
 // Assume opacity starts at 1 (fully visible)
 $element.velocity({ opacity: 0 }, { loop: true });
 Later, once the data has finished loading, you can stop the animation,
 then hide the element:
+
 Click here to view code image
 $element
 // First stop the infinite loop...
@@ -1419,11 +1667,13 @@ Specify the delay option in milliseconds to insert a pause before an
 animation begins. The delay option’s purpose is to retain an animation’s
 timing logic entirely within Velocity—as opposed to relying on jQuery’s
 $.delay() function to change when a Velocity animation starts:
+
 Click here to view code image
 // Wait 100ms before animating opacity toward 0
 $element.velocity({ opacity: 0 }, { delay: 100 });
 You can set the delay option with the loop option to create a pause
 between loop alternations:
+
 Click here to view code image
 // Loop four times, waiting 100ms between each loop
 $element.velocity({ height: "+=50px" }, { loop: 4, delay: 100
@@ -1444,6 +1694,7 @@ accordingly once the animation has completed. This effectively works to
 hide an element upon completion of an animation, and is useful in
 conjunction with animating an element’s opacity down to 0 (where the
 intention is to fade an element off the page):
+
 Click here to view code image
 // Fade an element to opacity:0 then remove it from the page's
 flow
@@ -1469,6 +1720,7 @@ Note that, instead of removing an element from the page’s flow, you
 can simply mark the element as both invisible and non-interactive by
 setting its visibility to "hidden". This is useful for when you want a
 hidden element to continue taking up space on the page:
+
 Click here to view code image
 // Fade an element to opacity:0 then make it non-interactive
 $element.velocity({ opacity: 0 }, { visibility: "hidden" });
@@ -1480,6 +1732,7 @@ ensuing animation. In other words, you’re undoing the hiding that
 occurred when the element was previously removed from view.
 Below, display is set to "block" before the element begins fading
 in:
+
 Click here to view code image
 $element.velocity({ opacity: 1 }, { display: "block" });
 This effectively replaces the jQuery equivalent:
@@ -1504,6 +1757,7 @@ animations demonstrated above. They function identically to
 jQuery’s fadeIn and fadeOut functions. You simply pass the
 corresponding command into Velocity as the first argument, and
 you pass in an options object, if desired, as normal:
+
 Click here to view code image
 $element.velocity(“fadeIn”, { duration: 1000 });
 $element.velocity(“fadeOut”, { duration: 1000 });
@@ -1518,11 +1772,13 @@ queued up with other chained Velocity calls.
 Reverse defaults to the options (duration, easing, etc.) used in the
 element’s prior Velocity call. However, you can override these options by
 passing in a new options object:
+
 Click here to view code image
 // Animate back to the original values using the prior
 Velocity call's options
 $element.velocity("reverse");
 or
+
 Click here to view code image
 // Do the same as above, but replace the prior call's duration
 with a value of 2000ms
@@ -1536,6 +1792,7 @@ To scroll the browser to the top edge of an element, pass in "scroll" as
 Velocity’s first argument. The scroll command behaves identically to a
 standard Velocity call; it can take options and is queued up with other
 chained Velocity calls:
+
 Click here to view code image
 $element
 .velocity("scroll", { duration: 1000, easing: "spring" })
@@ -1548,6 +1805,7 @@ you can use the container option, which accepts either a jQuery object
 or a raw element. Note that the container element of the CSS position
 property must be set to either relative, absolute, or fixed—static
 won’t do the trick:
+
 Click here to view code image
 // Scroll $element into view of $("#container")
 $element.velocity("scroll", { container: $("#container") });
@@ -1556,11 +1814,13 @@ to a parent element—the scroll command is always called on the element
 that’s being scrolled into view.
 By default, scrolling occurs on the y-axis. Pass in the axis: "x"
 option to scroll horizontally instead of vertically:
+
 Click here to view code image
 // Scroll the browser to the *left* edge of the targeted div.
 $element.velocity("scroll", { axis: "x" });
 Finally, the scroll command also uniquely takes an offset option,
 specified in pixels, which offsets the target scroll position:
+
 Click here to view code image
 // Scroll to a position 50px *above* the element's top edge.
 $element.velocity("scroll", { duration: 1000, offset: "-50px"
@@ -1578,6 +1838,7 @@ property, as well as the alpha component. Red, green, and blue range in
 value from 0 to 255, and alpha (which is equivalent to opacity) ranges
 from 0 to 1.
 Refer to the inline comments below for examples:
+
 Click here to view code image
 $element.velocity({
 // Animate backgroundColor to the hex value for black
@@ -1616,6 +1877,7 @@ works when jQuery is not present on the page. Accordingly, instead of
 chaining an animation call onto a jQuery element object—as shown in the
 previous examples in this chapter—the targeted element(s) are passed
 directly into the animation call as the first argument:
+
 Click here to view code image
 Velocity(element, { opacity: 0.5 }, 1000); // Velocity
 Velocity retains the same syntax as jQuery’s $.animate() even when
@@ -1642,6 +1904,7 @@ browsers.) As with jQuery’s element selector syntax, you simply pass
 querySelectorAll a CSS selector (the same selectors you use in your
 stylesheets for targeting elements), and it will return all matched elements
 in the form of an array:
+
 Click here to view code image
 document.querySelectorAll("body"); // Get the body element
 document.querySelectorAll(".squares"); // Get all elements
@@ -1653,6 +1916,7 @@ document.querySelectorAll("#main div"); // Get all divs within
 "main"
 If you assign the result of one of these lookups to a variable, you can
 then reuse that variable to animate the targeted element(s):
+
 Click here to view code image
 // Get all div elements
 var divs = document.querySelectorAll("div");
@@ -1660,6 +1924,7 @@ var divs = document.querySelectorAll("div");
 Velocity(divs, { opacity: 0 }, 1000);
 Since you’re no longer extending jQuery element objects, you may be
 wondering how to chain animations back-to-back, like this:
+
 Click here to view code image
 // These chain onto one another
 $element
@@ -1667,6 +1932,7 @@ $element
 .velocity({ opacity: 1 }, 1000);
 To reenact this pattern without the aid of jQuery, simply call
 animations one after another:
+
 Click here to view code image
 // Animations on the same element automatically chain onto one
 another.
@@ -2093,6 +2359,7 @@ they’re unmanageable in complex animations sequences (for example,
 when all elements sequentially load into view upon page load).
 CSS tries to address this issue with a keyframes feature, which lets you
 separate animation logic into discrete time ranges:
+
 Click here to view code image
 @keyframes myAnimation {
 0% { opacity: 0; transform: scale(0, 0); }
@@ -2121,6 +2388,7 @@ maintainable code.
 Working in CSS, you first define a transition on the target element
 so that changes in the specified CSS properties animate over a
 predetermined duration:
+
 Click here to view code image
 /* When this div's color property is modified, animate its
 change over a duration of 200ms */
@@ -2150,6 +2418,7 @@ individual parts can be updated without fear of compromising the
 integrity of the whole.
 In contrast, coding this same effect in jQuery would entail the
 following:
+
 Click here to view code image
 $div
 // Register a mouseover event on this div, which calls an
@@ -2193,6 +2462,7 @@ top: 50px;
 }
 You can then animate the CSS properties of that class (opacity and
 top in this case) onto the target element along with a specified duration:
+
 Click here to view code image
 // Animate the properties of the .fadeInAndMove class over a
 1000ms duration
@@ -2201,6 +2471,7 @@ The more common implementation of jQuery animation consists of
 inlining the desired animation properties within an $.animate() call,
 which uses the syntax demonstrated in Chapter 1, “Advantages of
 JavaScript Animation”:
+
 Click here to view code image
 $element.animate({ opacity: 1, top: 50 }, 1000);
 Both implementations produce the same result. The difference is their
@@ -2226,6 +2497,7 @@ style.js) rather than a dedicated CSS stylesheet. Sounds weird, right?
 Perhaps, but it works brilliantly. This technique leverages plain old
 JavaScript objects to help you organize your animation code.
 For example, your style.js file might look like this:
+
 Click here to view code image
 // This object is a parallel to the CSS class defined in the
 previous code example
@@ -2235,6 +2507,7 @@ top: "50px"
 };
 In your script.js, which is the primary JavaScript file that controls
 animation logic, you would then have:
+
 Click here to view code image
 // Pass our named properties object into Velocity
 $element.velocity(fadeIn, 1000);
@@ -2253,6 +2526,7 @@ one is to assign two member properties to a parent animation object to
 which you assign an expressive name. The first property on the object
 defines the animation’s properties; the second defines its options.
 In this case, your style.js file would look like this:
+
 Click here to view code image
 var fadeIn = {
 // p is for "properties"
@@ -2267,6 +2541,8 @@ easing: "linear"
 }
 };
 In the script.js file, you’d have:
+
+
 Click here to view code image
 // Pass in our clean and re-usable animation objects
 $element.velocity(fadeIn.p, fadeIn.o);
@@ -2287,6 +2563,7 @@ organizing your animation variations together. For example, if you
 typically fade button elements into view with a duration of 1000ms, but
 you fade modal windows into view with a duration of 3000ms, you can
 simply split your options object into two appropriately named variations:
+
 Click here to view code image
 var fadeIn = {
 p: {
@@ -2311,6 +2588,7 @@ $modal.velocity(fadeIn.p, fadeIn.oSlow);
 Alternatively, you could nest “fast” and “slow” objects as children of a
 singular o options object. The choice of which implementation to use is
 based on your personal preference:
+
 Click here to view code image
 var fadeIn = {
 p: {
@@ -2345,6 +2623,7 @@ improve the UI animation workflow. Many of the techniques in this
 chapter, including the one discussed below, make use of it.
 To install the UI pack, simply include a <script> tag for it after
 Velocity and before the ending </body> tag of your page:
+
 Click here to view code image
 <script src="velocity.js"></script>
 <script src="velocity.ui.js"></script>
@@ -2354,6 +2633,7 @@ to messily nested animation code.
 Standard approach
 Without the UI pack, the standard approach to consecutively animating
 separate elements is as follows:
+
 Click here to view code image
 // Animate element1 followed by element2 followed by element3
 $element1.velocity({ translateX: 100, opacity: 1 }, 1000,
@@ -2373,6 +2653,7 @@ place.
 Note that the code shown above is different from chaining multiple
 animations onto the same element, which is hassle-free and doesn’t require
 nesting:
+
 Click here to view code image
 // Chain multiple animations onto the same element
 $element1
@@ -2400,6 +2681,7 @@ Velocity accepts multiple argument syntaxes: the most common, when
 Velocity is invoked on a jQuery element object (like all the code examples
 shown so far), consists of a properties object followed by an options
 object:
+
 Click here to view code image
 // The argument syntax used thus far
 $element.velocity({ opacity: 1, top: "50px" }, { duration:
@@ -2408,6 +2690,7 @@ An alternative syntax pairs with Velocity’s utility function, which is the
 fancy name given to animating elements using the base Velocity object
 instead of chaining off of a jQuery element object. Here’s what animating
 off the base Velocity object looks like:
+
 Click here to view code image
 // Velocity registers itself on jQuery's $ object, which you
 leverage here
@@ -2430,6 +2713,7 @@ syntax just demonstrated. You then pass the entire array into a special
 Velocity function that fires the sequence’s calls successively. When one
 Velocity call is completed, the next runs—even if the individual calls are
 targeting different elements:
+
 Click here to view code image
 // Create the array of Velocity calls
 var loadingSequence = [
@@ -2452,6 +2736,7 @@ Your code is highly legible and expressive to others.
 If you combine this technique with the previous technique (turning CSS
 classes into JavaScript objects), your animation code starts to look
 remarkably elegant:
+
 Click here to view code image
 $.Velocity.RunSequence([
 { e: $element1, p: { translateX: 100, opacity: 1 }, o:
@@ -2469,6 +2754,7 @@ have multiple elements animate into view simultaneously, giving a single
 Velocity sequence the power to intricately control timing that would
 normally have to be orchestrated through messy callback nesting. Refer to
 the inlined comments below for details:
+
 Click here to view code image
 $.Velocity.RunSequence([
 { elements: $element1, properties: { translateX: 100 },
@@ -2496,6 +2782,7 @@ finishing touch. If this animation were to happen multiple times across a
 page, and on many different elements, it would make sense to avoid code
 repetition by turning it into a standalone function. Otherwise, you’d have
 to repeat this non-expressive code throughout your script.js:
+
 Click here to view code image
 $element
 .velocity({ opacity: 1, scale: 1 }, { duration: 500,
@@ -2524,6 +2811,7 @@ Optimized approach
 Velocity’s UI pack lets you register effects that you can subsequently reuse
 across a site. Once an effect is registered, you can call it by passing its
 name into Velocity as its first parameter:
+
 Click here to view code image
 // Assume we registered our effect under the name "growIn"
 $element.velocity("growIn");
@@ -2533,6 +2821,7 @@ maintainable.
 What’s more, a registered effect behaves identically to a standard
 Velocity call; you can pass in an options object as normal and chain other
 Velocity calls onto it:
+
 Click here to view code image
 $element
 // Scroll the element into view
@@ -2542,6 +2831,7 @@ following settings
 .velocity("growIn", { duration: 1000, delay: 200 })
 If the UI pack is loaded onto your page, an effect such as this is
 registered using the following syntax:
+
 Click here to view code image
 $.Velocity.RegisterEffect(name, {
  // Default duration value if one isn't passed into the call
@@ -2603,6 +2893,7 @@ Let’s register two UI pack effects—one for the “In” direction and one
 for the “Out” direction—and call the element “shadowIn” since it consists
 of fading and scaling an element into view, then expanding its
 boxShadow property outward:
+
 Click here to view code image
 $.Velocity
 .RegisterEffect("shadowIn", {
@@ -2648,6 +2939,7 @@ as M for multiplier):
 var M = 1;
 Then, bake the multiplier into the duration and delay option values
 within each animation call:
+
 Click here to view code image
 $element1.animate({ opacity: 1 }, { duration: 1000 * M });
 $element2.velocity({ opacity: 1 }, { delay: 250 * M });
@@ -2678,6 +2970,7 @@ to sprinkle in the M constant by hand. Like the example shown above,
 mock multiplies both the duration and the delay values. To turn mock
 on, temporarily set $.Velocity.mock to the multiplier value you want
 to use:
+
 Click here to view code image
 // Multiply all animation timing by 5
 $.Velocity.mock = 5;
@@ -2781,9 +3074,11 @@ have a div that looks like this:
 Hello World
 </div>
 If you call Blast on this div using the following syntax
+
 Click here to view code image
 $("div").blast({ delimiter: "word" });
 the div would turn into this:
+
 Click here to view code image
 <div class="blast-root">
 <span class="blast">Hello</span>
@@ -2792,6 +3087,7 @@ Click here to view code image
 As you can see, Blast separated the target div’s text into text parts that
 are individually wrapped in span elements. If you were to instead use the
 character delimiter, the result would have been:
+
 Click here to view code image
 <div class="blast-root">
 <span class="blast">H</span>
@@ -2856,6 +3152,7 @@ Blast.
 Installation
 Blast is installed on a page like any other JavaScript plugin: embed the
 appropriate script link before your page’s </body> tag:
+
 Click here to view code image
 <html>
 <head>My Page</head>
@@ -2872,6 +3169,7 @@ therefore must be required after jQuery. It doesn’t matter
 whether Blast is loaded before or after Velocity.
 Once Blast is loaded, use it by calling .blast() on a jQuery element
 object. It accepts an options object as its sole argument:
+
 Click here to view code image
 $element.blast({ option1: value1, option2: value2 });
 Let’s run through the available options.
@@ -2880,10 +3178,12 @@ Blast’s most important option is delimiter, which accepts
 "character", "word", or "sentence". To separate the text within
 $element using the "sentence" delimiter, your code would look like
 this:
+
 Click here to view code image
 $element.blast({ delimiter: "sentence" });
 Note that Blast returns the generated text wrapper elements to the
 jQuery selector chain so you can manipulate them, like this:
+
 Click here to view code image
 $element.blast({ delimiter: "sentence" })
 .css("opacity", 0.5);
@@ -2895,6 +3195,7 @@ customClass and generateValueClass. customClass behaves
 exactly as you would expect: supply a custom class (as a string value) to
 be assigned to the text node wrapper elements.
 Suppose you had the following div and Blast call:
+
 Click here to view code image
 <div>
 Hi Mom
@@ -2903,6 +3204,7 @@ $("div").blast({ delimiter: "word" , customClass: "myClass"
 });
 The div would turn into the following (note how Blast automatically
 assigns every text part the "blast" class by default):
+
 Click here to view code image
 <div>
 <span class="blast myClass">Hi</span>
@@ -2925,6 +3227,7 @@ delimiters.
 The [delimiter] placeholder represents the delimiter type used in
 the call, and the [textValue] placeholder represents the text contained
 within an individual element. Consider the following example:
+
 Click here to view code image
 <div>
 Hi Mom
@@ -2932,6 +3235,7 @@ Hi Mom
 $("div").blast({ delimiter: "word" , generateValueClass: true
 });
 The element would turn into this:
+
 Click here to view code image
 <div class="blast-root">
 <span class="blast blast-word-Hi">Hi</span>
@@ -2939,6 +3243,7 @@ Click here to view code image
 </div>
 When Blast is called with the letter delimiter, the element would
 turn into this instead:
+
 Click here to view code image
 <div class="blast-root">
 <span class="blast blast-letter-H">H</span>
@@ -2950,6 +3255,7 @@ or JavaScript to manipulate text matches based on the text contained with
 them. If, for example, you used this feature on a book excerpt, you could
 create a visualization of all instances of the word “and” by giving elements
 with the .blast.word-and class a yellow background:
+
 Click here to view code image
 // jQuery implementation
 $(".blast-word-and").css("background", "yellow");
@@ -2968,6 +3274,7 @@ Option: Tag
 This option lets you specify the type of element that wraps text parts. The
 default value is span, but you can pass in any element type (for example,
 a, div, p). Consider this example:
+
 Click here to view code image
 <div>
 Hi Mom
@@ -3030,6 +3337,7 @@ into view one after another.
 Replacing existing text
 Let’s start by creating a container div with placeholder text that will be
 replaced by new text that animates into place:
+
 Click here to view code image
 <div>
 A message will load here shortly...
@@ -3039,6 +3347,7 @@ child text elements that are visible as well. Since your goal is to animate
 the generated text elements into view starting from a state of invisibility,
 you have to make the generated text elements invisible immediately after
 you call Blast:
+
 Click here to view code image
 $("div")
 .html("This is our new message.")
@@ -3063,6 +3372,7 @@ This is where Velocity’s UI pack comes into play. (Review Chapter 4,
 successive delay between animation start times within an element set, use
 Velocity UI pack’s stagger option, which expects a duration specified in
 milliseconds. Applying it to the previous code example, you get:
+
 Click here to view code image
 $("div")
 .html("This is our new message.")
@@ -3093,6 +3403,7 @@ the concept of mirroring animations so that what comes in reflects what
 goes out. That advice applies here.
 If you want the outward textual animation to mirror the inward
 animation, you could rework the code example as follows:
+
 Click here to view code image
 // Select the previously blasted text
 $("div .blast").velocity(
@@ -3153,6 +3464,7 @@ selection of an element within a set based on that element’s index. If you
 passed an integer value of 3 into these functions (or 2 in the case of
 jQuery as you will see), they would target the third element (that is, third
 word) in the full element set (that is, multiword sentence):
+
 Click here to view code image
 // CSS implementation
 .blast:nth-child(3) {
@@ -3164,6 +3476,7 @@ Both examples above target the third element on the page that has the
 CSS’ nth-child is 1-based, hence the different integer values being
 passed into the examples.) Let’s continue with a jQuery implementation to
 work toward a complete example:
+
 Click here to view code image
 <div>
 Current status: paused
@@ -3209,6 +3522,7 @@ them the added functionality of "block" elements (such as div and p),
 in which position-related properties, including 3D transforms, can be
 styled. Taking this display tweak into account, the inward text
 transition example would now look like this:
+
 Click here to view code image
 $("div")
 .html(message)
@@ -3245,6 +3559,7 @@ example, you could break apart a website’s slogan text (“Delivering
 happiness right to your door!”) word by word to reduce the opacity of
 each successive word, thereby creating a subtle gradient effect that spans
 the entire sentence. Here’s what that code would look like:
+
 Click here to view code image
 <div>
 Hi Mom
@@ -3262,6 +3577,7 @@ Instead of iterating opacity values, you could also iterate RGB values
 to create color-based gradients. For example, if you increased the blue
 component of text whose color initially starts as gray, you’d produce
 elements that are increasingly rich in blue as you go from first to last:
+
 Click here to view code image
 // Blast the div then iterate through the generated text
 elements
@@ -3320,6 +3636,7 @@ SVG markup
 SVG elements are defined within a parent <svg> container. Specifying the
 width and height dimensions of container element defines the canvas that
 your SVG graphics render upon:
+
 Click here to view code image
 <svg version="1.1" width="500" height="500" xmlns="http://
 www.w3.org/2000/svg">
@@ -3341,6 +3658,7 @@ fill, x, and y. (fill specifies which color to fill a shape with, whereas
 x and y define the position of the element’s top-left corner.) These
 attributes define how an element is visually rendered on its canvas. Let’s
 run through a few of them, using rect as a sample SVG element:
+
 Click here to view code image
 <rect id="rect" x="100" y="100" width="200" height="200" />
 Here, the width and height attributes work as you’d expect. The unique
@@ -5378,7 +5696,8 @@ a unique way. Here are 30 JavaScript animation libraries to use in your projects
   <li><a href="https://roughnotation.com/">Rough Notation</a><br>
     <p>Rough Notation is a small JavaScript library to create and animate annotations on a web page.</p></li>
   <li><a href="https://particles.matteobruni.it/">tsParticles</a><br>
-    <p>A lightweight library for creating particles, an improved version of the abandoned and obsolete particles.js.</p></li>
+    <p>A lightweight library for creating particles, an improved version of the abandoned and obsolete 
+	particles.js.</p></li>
   <li><a href="https://vincentgarreau.com/particles.js/">Particles.js</a><br>
     <p>A lightweight JavaScript library for creating particles.</p></li>
   <li><a href="https://mojs.github.io/">mo.js</a><br>
